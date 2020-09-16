@@ -70,7 +70,22 @@
     async function sendMsg() {
     }
 
+    // when did LIFF open from
     function getContext() {
+
+      document.getElementById("Type").append(liff.getContext().type)
+
+      // compact, tall, full
+      document.getElementById("viewType").append(liff.getContext().viewType)
+
+      // ID of chat one on one
+      document.getElementById("utouId").append(liff.getContext().utouId)
+
+      // ID of chat room
+      document.getElementById("roomId").append(liff.getContext().roomId)
+
+      // ID of chat group
+      document.getElementById("groupId").append(liff.getContext().groupId)
     }
 
     async function getUserProfile() {
@@ -116,7 +131,7 @@
       await liff.init({ liffId: "1654927941-eO25j1PK" })
       getEnvironment()
       getUserProfile()
-      // getContext()
+      getContext()
       // getFriendship()
       // createUniversalLink()
     }
