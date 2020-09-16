@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
   <title>My LIFF app</title>
   <link rel="stylesheet" href="css/style.css" media="all">
 </head>
+
 <body>
   <p id="os"><b>OS:</b> </p>
   <p id="language"><b>Language:</b> </p>
@@ -42,7 +44,7 @@
     console.log("Hello World!")
   </script> -->
 
-  <!-- <script src="https://static.line-scdn.net/liff/edge/versions/2.4.0/sdk.js"></script> -->
+  <script src="https://static.line-scdn.net/liff/edge/versions/2.4.0/sdk.js"></script>
   <script>
     function createUniversalLink() {
     }
@@ -75,12 +77,37 @@
     }
 
     function getEnvironment() {
+      // get user OS
+      document.getElementById("os").append(liff.getOS())
+
+      // get user language
+      document.getElementById("language").append(liff.getLanguage())
+
+      // get current verison of SDK
+      document.getElementById("version").append(liff.getVersion())
+
+      // not channel accessToken ,it is temporary to verify for action and security
+      document.getElementById("accessToken").append(liff.getAccessToken())
+
+      // where did user open LIFF ? Line browser(true) or external browser(false)
+      document.getElementById("isInClient").append(liff.isInClient())
+
+      if (liff.isInClient()) {
+        document.getElementById("btnLogOut").style.display = "none"
+      } else {
+        document.getElementById("btnMsg").style.display = "none"
+        document.getElementById("btnScanCode").style.display = "none"
+        document.getElementById("btnClose").style.display = "none"
+      }
+
     }
 
     async function main() {
-      alert("LINE Developers x Skooldio")
-      await liff.init({ liffId: "YOUR-LIFF-ID" })
-      // getEnvironment()
+
+      // LIFF will work after liff.init run 
+      // liff.init require liffId
+      await liff.init({ liffId: "1654927941-eO25j1PK" })
+      getEnvironment()
       // getUserProfile()
       // getContext()
       // getFriendship()
@@ -89,4 +116,5 @@
     main()
   </script>
 </body>
+
 </html>
