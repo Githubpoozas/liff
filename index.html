@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <p>Lesson: Opening URL</p>
+  <p>Lesson: scan QR</p>
   <p id="os"><b>OS:</b> </p>
   <p id="language"><b>Language:</b> </p>
   <p id="version"><b>Version:</b> </p>
@@ -60,6 +60,8 @@
     }
 
     async function scanCode() {
+      const result = await liff.scanCode()
+      document.getElementById("scanCode").append(result.value)
     }
 
     function openWindow() {
@@ -81,7 +83,6 @@
 
     // send messages to chat
     async function sendMsg() {
-      alert("send message click")
       if (liff.getContext().type !== "none" && liff.getContext.type !== "external") {
         await liff.sendMessages([
           {
@@ -91,8 +92,6 @@
           }
         ])
         alert("Message sent")
-      } else {
-        alert("cannot send message")
       }
     }
 
