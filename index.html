@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <p>Lesson: Logout</p>
+  <p>Lesson: sharing message</p>
   <p id="os"><b>OS:</b> </p>
   <p id="language"><b>Language:</b> </p>
   <p id="version"><b>Version:</b> </p>
@@ -51,6 +51,12 @@
     }
 
     async function shareMsg() {
+      await liff.shareTargetPicker([
+        {
+          "type": "text",
+          "text": "this message was sent by ShareTargetPicker"
+        }
+      ])
     }
 
     function logOut() {
