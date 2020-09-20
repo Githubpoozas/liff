@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <p>Lesson: sharing message</p>
+  <p>Lesson: gen universalLink</p>
   <p id="os"><b>OS:</b> </p>
   <p id="language"><b>Language:</b> </p>
   <p id="version"><b>Version:</b> </p>
@@ -48,6 +48,12 @@
   <script src="https://static.line-scdn.net/liff/edge/versions/2.4.0/sdk.js"></script>
   <script>
     function createUniversalLink() {
+      const link1 = liff.permanentLink.createUrl()
+      document.getElementById("universalLink1").append(link1)
+
+      liff.permanentLink.setExtraQueryParam('param=9&id=5')
+      const link2 = liff.permanentLink.createUrl()
+      document.getElementById("universalLink2").append(link2)
     }
 
     async function shareMsg() {
@@ -169,10 +175,10 @@
         getUserProfile()
         getContext()
         getFriendship()
+        createUniversalLink()
       } else {
         liff.login()
       }
-      // createUniversalLink()
     }
     main()
   </script>
