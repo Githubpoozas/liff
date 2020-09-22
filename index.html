@@ -31,7 +31,7 @@
   <p id="universalLink1"><b>Universal Link:</b> </p>
   <p id="universalLink2"><b>Universal Link with Query params:</b> </p>
   <p><a href="https://githubpoozas.github.io/liff/path/?param=9">Link to Path</a></p>
-  
+
 
   <button id="btnMsg" onclick="sendMsg()">Send Message</button>
   <button id="btnShare" onclick="shareMsg()">Share Target Picker</button>
@@ -166,20 +166,24 @@
     }
 
     async function main() {
+      // liff.ready will run after liff.init run
+      liff.ready.then(() => {
+        document.getElementById("isLoggedIn").append(liff.isLoggedIn())
+        if (liff.isLoggedIn()) {
+          getEnvironment()
+          getUserProfile()
+          getContext()
+          getFriendship()
+          createUniversalLink()
+        } else {
+          liff.login()
+        }
+      })
 
       // LIFF will work after liff.init run 
       // liff.init require liffId
       await liff.init({ liffId: "1654927941-eO25j1PK" })
-      document.getElementById("isLoggedIn").append(liff.isLoggedIn())
-      if (liff.isLoggedIn()) {
-        getEnvironment()
-        getUserProfile()
-        getContext()
-        getFriendship()
-        createUniversalLink()
-      } else {
-        // liff.login()
-      }
+
     }
     main()
   </script>
